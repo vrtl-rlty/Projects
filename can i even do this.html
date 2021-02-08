@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>List Sorter</title>
+        <link rel="stylesheet" type="text/css" href="nice dress.css">
+        <script src="bones.js"></script>
+    </head>
+    <body>
+        <center>
+            <h2 style="margin-top: 20px; margin-bottom: 20px;">
+                List Sorter
+        </h2>
+    <div id="rows">
+        <span>
+            1
+        </span>
+        <input type="text" placeholder="Name Of List Item" id="item1">
+        <br>
+        <span>
+            2
+        </span>
+        <input type="text" placeholder="Name Of List Item" id="item2">
+        <br>
+        <span>
+            3
+        </span>
+        <input type="text" placeholder="Name Of List Item" id="item3">
+        <br>
+        <span>
+            4
+        </span>
+        <input type="text" placeholder="Name Of List Item" id="item4">
+        <br>
+        </div>
+        <button onclick="submit()" id="buttonsubmit">Submit</button>
+        <div id="displayitemwithcomma">
+
+        </div><hr>
+        <div id="displayitemwithoutcomma">
+
+        </div>
+        <button onclick="sort()" id="sortbutton">Sort</button>
+</center>
+Instructions: Enter Any Sentence, 1 in each box, or as many as you like. Then Click Submit, you'll see two boxes, one in list order, and one in alphabetical order. If it's not working, go to inspect element and check the console.
+    </body>
+</html>
