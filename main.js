@@ -1,61 +1,70 @@
-var mouseEvent = "empty";
-var last_position_of_x, last_position_of_y;
+canvas = document.getElementById("myCanvas");
+ctx = canvas.getContext("2d");
+rover_width = 100;
+ rover_height = 40;
+  background_image = "track.jpeg";
+   rover_image = "unnamed.png";
+    rover_x = 10; rover_y = 10;
+     function add() { background_imgTag = new Image();
 
-    canvas = document.getElementById('myCanvas');
-    ctx = canvas.getContext("2d");
-    
-    color = "black";
-    width_of_line = 1;
-    canvas.addEventListener("mousedown", my_mousedown);
-    function my_mousedown(e)
-    {
-        //Addictonal Activity start
-        color = document.getElementById("color").value;
-        width_of_line = document.getElementById("width_of_line").value;
-        //Addictonal Activity ends
+         background_imgTag.onload = uploadBackground();
 
-        mouseEvent = "mouseDown";
-    }
+           background_imgTag.src = background_image;
 
-    canvas.addEventListener("mousemove", my_mousemove);
-    function my_mousemove(e)
-    {
-        current_position_of_mouse_x = e.clientX - canvas.offsetLeft;
-        current_position_of_mouse_y = e.clientY - canvas.offsetTop;
+             rover_imgTag = new Image();
 
-        if (mouseEvent == "mouseDown") {
-        ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = width_of_line;
+               rover_imgTag.onload = uploadrover();
 
-        console.log("Last position of x and y coordinates = ");
-        console.log("x = " + last_position_of_x + "y = " + last_position_of_y);
-        ctx.moveTo(last_position_of_x, last_position_of_y);
+                 rover_imgTag.src = rover_image;
+     }
+     function uploadBackground(){
+         ctx.drawImage(background_imgTag, 0, 0, canvas.width, canvas.height);
+     }
 
-        console.log("Current position of x and y coordinates = ");
-        console.log("x  = " + current_position_of_mouse_x + "y = " + current_position_of_mouse_y);
-        ctx.lineTo(current_position_of_mouse_x, current_position_of_mouse_y);
-        ctx.stroke();
-        }
-
-        last_position_of_x = current_position_of_mouse_x; 
-        last_position_of_y = current_position_of_mouse_y;
-    }
-
-    canvas.addEventListener("mouseup", my_mouseup);
-    function my_mouseup(e)
-    {
-        mouseEvent = "mouseUP";
-    }
-
-    canvas.addEventListener("mouseleave", my_mouseleave);
-    function my_mouseleave(e)
-    {
-        mouseEvent = "mouseleave";
-    }
+     function uploadrover() 
+     { ctx.drawImage(rover_imgTag, rover_x, rover_y, rover_width, rover_height);
+     } 
+     window.addEventListener("keydown", my_keydown);
+      function my_keydown(e) { keyPressed = e.keyCode;
+         console.log(keyPressed);
+          if(keyPressed == '38') { up();
+             console.log("up");
+             } if(keyPressed == '40') { down();
+               console.log("down");
+               } if(keyPressed == '37') { left();
+                 console.log("left");
+                 } if(keyPressed == '39') { right(); console.log("right");
+                 } } 
 
 
-//Additional Activity
-function clearArea() {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-}
+                 function up()
+                  {
+                     if(rover_y >=0) {
+                        rover_y = rover_y - 10;
+                   console.log("When up arrow is pressed, x = " + rover_x + " | y = " +rover_y);
+                    uploadBackground();
+                     uploadrover(); 
+                    } 
+                    } 
+                    function down() { if(rover_y <=500) { rover_y =rover_y+ 10;
+                       console.log("When down arrow is pressed, x = " + rover_x + " | y = " +rover_y);
+                        uploadBackground();
+                         uploadrover();
+                         
+                        } 
+                      } 
+                      function left() 
+                      { 
+                        if(rover_x >= 0) { rover_x =rover_x - 10; 
+                          console.log("When left arrow is pressed, x = " + rover_x + " | y = " +rover_y);
+                         uploadBackground(); 
+                         uploadrover();
+                         }
+                         } 
+                         function right() { if(rover_x <= 700) { rover_x =rover_x + 10; 
+                          console.log("When right arrow is pressed, x = " + rover_x + " | y = " +rover_y);
+                           uploadBackground();
+                            uploadrover(); 
+                          } 
+                        }
+
